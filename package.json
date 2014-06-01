@@ -1,0 +1,26 @@
+{
+  "name": "hubot-misawa",
+  "version": "0.0.1",
+  "description": "Hubot-scripts returns JIGOKU-NO-MISAWA image",
+  "main": "misawa.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moqada/hubot-misawa.git"
+  },
+  "keywords": [
+    "hubot",
+    "hubot-scripts",
+    "misawa",
+    "horesase",
+    "image"
+  ],
+  "author": "moqada",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/moqada/hubot-misawa/issues"
+  },
+  "homepage": "https://github.com/moqada/hubot-misawa"
+}
