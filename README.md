@@ -1,4 +1,4 @@
-# hubot-tiqav
+# hubot-misawa
 
 惚れさせ男子データベースから地獄のミサワ画像を返す hubot-scripts。
 
