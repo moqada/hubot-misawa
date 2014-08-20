@@ -8,7 +8,7 @@
 # Commands:
 #   hubot misawa <query> - 惚れさせ男子データベースから <query> で検索した画像を返す。<query> がない場合はランダム。
 #
-# Author
+# Author:
 #   moqada
 
 module.exports = (robot) ->
