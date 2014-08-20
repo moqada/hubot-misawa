@@ -1,6 +1,6 @@
 {
   "name": "hubot-misawa",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Hubot-scripts returns JIGOKU-NO-MISAWA image",
   "main": "src/index.coffee",
   "scripts": {
