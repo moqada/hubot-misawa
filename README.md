@@ -21,5 +21,6 @@
 ## Commands
 
 ```
-hubot misawa <query> - 惚れさせ男子データベースから <query> で検索した画像を返す。<query> がない場合はランダム。
+hubot misawa - 惚れさせ男子データベースからランダムに画像を返す
+hubot misawa <query> - 惚れさせ男子データベースから <query> で検索した画像を返す
 ```
