@@ -23,4 +23,5 @@
 ```
 hubot misawa - 惚れさせ男子データベースからランダムに画像を返す
 hubot misawa <query> - 惚れさせ男子データベースから <query> で検索した画像を返す
+hubot misawa bomb <N> <query> - 惚れさせ男子データベースから <query> で検索した画像を <N> 個返す
 ```
