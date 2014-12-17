@@ -38,12 +38,12 @@ misawa = (msg, q, n) ->
           msg.send misawaN msg, q, meigens
 
 module.exports = (robot) ->
-  robot.respond /misawa( (.*))?/i, (msg) ->
-    return if msg.match[2].indexOf "bomb" > -1
+  robot.respond /misawa( +(.*))?/i, (msg) ->
     q = msg.match[2]
+    return if q.indexOf("bomb") > -1 if q
     misawa msg, q, 1
 
-  robot.respond /misawa bomb( (\d+))?( (.*))?/i, (msg) ->
+  robot.respond /misawa bomb( +(\d+))?( +(.*))?/i, (msg) ->
     n = msg.match[2] or 5
     q = msg.match[4]
     misawa msg, q, n
