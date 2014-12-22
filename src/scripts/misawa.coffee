@@ -14,6 +14,8 @@
 # Author:
 #   moqada
 ENABLE_TEXT = process.env.HUBOT_MISAWA_ENABLE_TEXT or false
+ERROR_MESSAGE = process.env.HUBOT_MISAWA_ERROR_MESSAGE or 'エラーっぽい'
+NOT_FOUND_MESSAGE = process.env.HUBOT_MISAWA_404_MESSAGE or '画像ない'
 
 
 genMessage = (meigen) ->
@@ -29,17 +31,16 @@ misawaN = (msg, q, meigens) ->
           return true
       return false
   if meigens.length > 0
-    misawa = msg.random(meigens)
-    res = genMessage misawa
+    res = genMessage msg.random meigens
   else
-    res = process.env.HUBOT_MISAWA_404_MESSAGE or "画像ない"
+    res = NOT_FOUND_MESSAGE
   return res
 
 misawa = (msg, q, n) ->
   msg.http('http://horesase-boys.herokuapp.com/meigens.json')
     .get() (err, res, body) ->
       if err
-        msg.send process.env.HUBOT_MISAWA_ERROR_MESSAGE or "エラーっぽい"
+        msg.send ERROR_MESSAGE
       else
         meigens = JSON.parse body
         for i in [1..n]
