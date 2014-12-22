@@ -8,27 +8,42 @@
 # Commands:
 #   hubot misawa - 惚れさせ男子データベースからランダムに画像を返す
 #   hubot misawa <query> - 惚れさせ男子データベースから <query> で検索した画像を返す
+#   hubot misawa bomb <N> <query> - 惚れさせ男子データベースから <query> で検索した画像を <N> 個返す
 #
 # Author:
 #   moqada
 
+misawaN = (msg, q, meigens) ->
+  if q
+    meigens = meigens.filter (meigen) ->
+      for key in ['title', 'body', 'character']
+        if meigen[key] and meigen[key].indexOf(q) isnt -1
+          return true
+      return false
+  if meigens.length > 0
+    misawa = msg.random(meigens)
+    res = "#{misawa.character} 「#{misawa.title}」 #{misawa.image}"
+  else
+    res = process.env.HUBOT_MISAWA_404_MESSAGE or "画像ない"
+  return res
+
+misawa = (msg, q, n) ->
+  msg.http('http://horesase-boys.herokuapp.com/meigens.json')
+    .get() (err, res, body) ->
+      if err
+        msg.send process.env.HUBOT_MISAWA_ERROR_MESSAGE or "エラーっぽい"
+      else
+        meigens = JSON.parse body
+        for i in [1..n]
+          msg.send misawaN msg, q, meigens
+
 module.exports = (robot) ->
-  robot.respond /misawa( (.*))?/i, (msg) ->
+  robot.respond /misawa( +(.*))?/i, (msg) ->
     q = msg.match[2]
-    msg.http('http://horesase-boys.herokuapp.com/meigens.json')
-      .get() (err, res, body) ->
-        if err
-          res = process.env.HUBOT_MISAWA_ERROR_MESSAGE or "エラーっぽい"
-        else
-          meigens = JSON.parse body
-          if q
-            meigens = meigens.filter (meigen) ->
-              for key in ['title', 'body', 'character']
-                if meigen[key] and meigen[key].indexOf(q) isnt -1
-                  return true
-              return false
-          if meigens.length > 0
-            res = msg.random(meigens).image
-          else
-            res = process.env.HUBOT_MISAWA_404_MESSAGE or "画像ない"
-        msg.send res
+    return if q.indexOf("bomb") > -1 if q
+    misawa msg, q, 1
+
+  robot.respond /misawa bomb( +(\d+))?( +(.*))?/i, (msg) ->
+    n = msg.match[2] or 5
+    q = msg.match[4]
+    misawa msg, q, n
