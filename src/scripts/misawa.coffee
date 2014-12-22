@@ -4,6 +4,7 @@
 # Configuration:
 #   HUBOT_MISAWA_404_MESSAGE - 画像がなかった場合のメッセージ
 #   HUBOT_MISAWA_ERROR_MESSAGE - エラーが発生した場合のメッセージ
+#   HUBOT_MISAWA_ENABLE_TEXT - メッセージにキャラクター名とタイトルを含める
 #
 # Commands:
 #   hubot misawa - 惚れさせ男子データベースからランダムに画像を返す
@@ -12,6 +13,13 @@
 #
 # Author:
 #   moqada
+ENABLE_TEXT = process.env.HUBOT_MISAWA_ENABLE_TEXT or false
+
+
+genMessage = (meigen) ->
+  if ENABLE_TEXT
+    return "#{meigen.character} 「#{meigen.title}」 #{meigen.image}"
+  return "#{meigen.image}"
 
 misawaN = (msg, q, meigens) ->
   if q
@@ -22,7 +30,7 @@ misawaN = (msg, q, meigens) ->
       return false
   if meigens.length > 0
     misawa = msg.random(meigens)
-    res = "#{misawa.character} 「#{misawa.title}」 #{misawa.image}"
+    res = genMessage misawa
   else
     res = process.env.HUBOT_MISAWA_404_MESSAGE or "画像ない"
   return res

@@ -12,6 +12,10 @@
 
 エラーが発生した場合に返すメッセージ
 
+**HUBOT_MISAWA_ENABLE_TEXT**
+
+メッセージにキャラクター名とタイトルを含める
+
 ## Installation
 
 1. `npm install hubot-misawa --save`
