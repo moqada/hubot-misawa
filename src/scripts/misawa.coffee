@@ -37,7 +37,7 @@ misawaN = (msg, q, meigens) ->
   return res
 
 misawa = (msg, q, n) ->
-  msg.http('http://horesase-boys.herokuapp.com/meigens.json')
+  msg.http('http://horesase.github.io/horesase-boys/meigens.json')
     .get() (err, res, body) ->
       if err
         msg.send ERROR_MESSAGE
