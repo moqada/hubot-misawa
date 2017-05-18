@@ -1,5 +1,7 @@
 # hubot-misawa
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/moqada/hubot-misawa.svg)](https://greenkeeper.io/)
+
 惚れさせ男子データベースから地獄のミサワ画像を返す hubot-scripts。
 
 ## Configuration
